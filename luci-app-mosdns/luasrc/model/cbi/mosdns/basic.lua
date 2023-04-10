@@ -51,51 +51,32 @@ o = s:taboption("basic", Flag, "custom_local_dns", translate("Local DNS"), trans
 o:depends( "configfile", "/etc/mosdns/config.yaml")
 o.default = false
 o = s:taboption("basic", DynamicList, "local_dns", translate("Upstream DNS servers"))
-o:value("119.29.29.29", "119.29.29.29 (DNSPod Primary)")
-o:value("119.28.28.28", "119.28.28.28 (DNSPod Secondary)")
-o:value("223.5.5.5", "223.5.5.5 (AliDNS Primary)")
-o:value("223.6.6.6", "223.6.6.6 (AliDNS Secondary)")
-o:value("114.114.114.114", "114.114.114.114 (114DNS Primary)")
-o:value("114.114.115.115", "114.114.115.115 (114DNS Secondary)")
-o:value("180.76.76.76", "180.76.76.76 (Baidu DNS)")
-o:value("https://doh.pub/dns-query", "DNSPod DoH")
-o:value("https://dns.alidns.com/dns-query", "AliDNS DoH")
-o:value("https://doh.360.cn/dns-query", "360DNS DoH")
+o:value("202.102.224.68", "202.102.224.68 (河南联通)")
+o:value("tls://223.5.5.5", "223.5.5.5 (AliDNS TLS)")
+o:value("tls://120.53.53.53", "120.53.53.53 (DNSPod TLS)")
 o:depends("custom_local_dns", "1")
 
 o = s:taboption("basic", DynamicList, "remote_dns", translate("Remote DNS"))
 o:value("tls://1.1.1.1", "1.1.1.1 (CloudFlare DNS)")
-o:value("tls://1.0.0.1", "1.0.0.1 (CloudFlare DNS)")
 o:value("tls://8.8.8.8", "8.8.8.8 (Google DNS)")
-o:value("tls://8.8.4.4", "8.8.4.4 (Google DNS)")
 o:value("tls://9.9.9.9", "9.9.9.9 (Quad9 DNS)")
-o:value("tls://149.112.112.112", "149.112.112.112 (Quad9 DNS)")
-o:value("tls://45.11.45.11", "45.11.45.11 (DNS.SB)")
-o:value("tls://208.67.222.222", "208.67.222.222 (Open DNS)")
-o:value("tls://208.67.220.220", "208.67.220.220 (Open DNS)")
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
-o = s:taboption("basic", ListValue, "bootstrap_dns", translate("Bootstrap DNS servers"), translate("Bootstrap DNS servers are used to resolve IP addresses of the DoH/DoT resolvers you specify as upstreams"))
-o:value("119.29.29.29", "119.29.29.29 (DNSPod Primary)")
-o:value("119.28.28.28", "119.28.28.28 (DNSPod Secondary)")
-o:value("223.5.5.5", "223.5.5.5 (AliDNS Primary)")
-o:value("223.6.6.6", "223.6.6.6 (AliDNS Secondary)")
-o:value("114.114.114.114", "114.114.114.114 (114DNS Primary)")
-o:value("114.114.115.115", "114.114.115.115 (114DNS Secondary)")
-o:value("180.76.76.76", "180.76.76.76 (Baidu DNS)")
-o.default = "119.29.29.29"
+o = s:taboption("basic", Value, "socks5", translate("代理服务器"), translate("用于 远程DNS 的 socks5 服务器，格式 host:port。数据将会通过该代理中转。暂不支持用户名密码认证。UDP 协议和启用了 HTTP3 的 DoH 协议不支持该设定"))
+o.placeholder = "127.0.0.1:1070"
+o.default = "127.0.0.1:1070"
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 s:tab("advanced", translate("Advanced Options"))
 
 o = s:taboption("advanced", Value, "concurrent", translate("Concurrent"), translate("DNS query request concurrency, The number of upstream DNS servers that are allowed to initiate requests at the same time"))
 o.datatype = "and(uinteger,min(1),max(3))"
-o.default = "1"
+o.default = "3"
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 o = s:taboption("advanced", Value, "max_conns", translate("Maximum Connections"), translate("Set the Maximum connections for DoH and pipeline's TCP/DoT, Except for the HTTP/3 protocol"))
 o.datatype = "and(uinteger,min(1))"
-o.default = "2"
+o.default = "3"
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 o = s:taboption("advanced", Value, "idle_timeout", translate("Idle Timeout"), translate("DoH/TCP/DoT Connection Multiplexing idle timeout (default 30 seconds)"))
@@ -145,12 +126,12 @@ o:depends("dump_file", "1")
 
 o = s:taboption("advanced", Value, "minimal_ttl", translate("Minimum TTL"), translate("Modify the Minimum TTL value (seconds) for DNS answer results, 0 indicating no modification"))
 o.datatype = "and(uinteger,min(0),max(604800))"
-o.default = "0"
+o.default = "600"
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 o = s:taboption("advanced", Value, "maximum_ttl", translate("Maximum TTL"), translate("Modify the Maximum TTL value (seconds) for DNS answer results, 0 indicating no modification"))
 o.datatype = "and(uinteger,min(0),max(604800))"
-o.default = "0"
+o.default = "1800"
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 o = s:taboption("advanced", Flag, "adblock", translate("Enable DNS ADblock"))
