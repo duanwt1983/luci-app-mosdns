@@ -52,7 +52,7 @@
 
 --------------
 
-![1](https://user-images.githubusercontent.com/16485166/228065497-881da1ea-ca36-4bbb-8eca-17a64846584d.png)
+![1](https://github.com/duanwt1983/luci-app-mosdns/blob/v5/1.png)
 
 ![2](https://user-images.githubusercontent.com/16485166/228065511-40e541cd-be80-4b21-8390-66f7f630f851.jpg)
 
