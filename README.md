@@ -1,5 +1,7 @@
 # luci-app-mosdns
 
+此项目fork自 https://github.com/sbwml/luci-app-mosdns ，修改了socks5代理
+
 [MosDNS](https://github.com/IrineSistiana/mosdns) is a plug-in DNS forwarder. Users can splicing plug-ins as needed to customize their own DNS processing logic.
 
 ## How to build
