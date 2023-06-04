@@ -57,14 +57,14 @@ o:value("tls://120.53.53.53", "120.53.53.53 (DNSPod TLS)")
 o:depends("custom_local_dns", "1")
 
 o = s:taboption("basic", DynamicList, "remote_dns", translate("Remote DNS"))
-o:value("tls://1.1.1.1", "1.1.1.1 (CloudFlare DNS)")
+o:value("tls://8.8.4.4", "8.8.4.4 (Google DNS)")
 o:value("tls://8.8.8.8", "8.8.8.8 (Google DNS)")
-o:value("tls://9.9.9.9", "9.9.9.9 (Quad9 DNS)")
+o:value("tls://208.67.222.222", "208.67.222.222 (OpenDNS)")
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 o = s:taboption("basic", Value, "socks5", translate("代理服务器"), translate("用于 远程DNS 的 socks5 服务器，格式 host:port。数据将会通过该代理中转。暂不支持用户名密码认证。UDP 协议和启用了 HTTP3 的 DoH 协议不支持该设定"))
-o.placeholder = "127.0.0.1:1070"
-o.default = "127.0.0.1:1070"
+o.placeholder = "127.0.0.1:1081"
+o.default = "127.0.0.1:1081"
 o:depends("configfile", "/etc/mosdns/config.yaml")
 
 s:tab("advanced", translate("Advanced Options"))
