@@ -51,7 +51,7 @@ o = s:taboption("basic", Flag, "custom_local_dns", translate("Local DNS"), trans
 o:depends( "configfile", "/etc/mosdns/config.yaml")
 o.default = false
 o = s:taboption("basic", DynamicList, "local_dns", translate("Upstream DNS servers"))
-o:value("202.102.224.68", "202.102.224.68 (河南联通)")
+o:value("tls://1.12.12.12","1.12.12.12 (DNSPod TLS)")
 o:value("tls://223.5.5.5", "223.5.5.5 (AliDNS TLS)")
 o:value("tls://120.53.53.53", "120.53.53.53 (DNSPod TLS)")
 o:depends("custom_local_dns", "1")
