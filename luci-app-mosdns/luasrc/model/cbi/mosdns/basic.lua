@@ -57,7 +57,7 @@ o:value("tls://120.53.53.53", "120.53.53.53 (DNSPod TLS)")
 o:depends("custom_local_dns", "1")
 
 o = s:taboption("basic", DynamicList, "remote_dns", translate("Remote DNS"))
-o:value("tls://8.8.4.4", "8.8.4.4 (Google DNS)")
+o:value("tls://208.67.220.220", "208.67.220.220 (OpenDNS)")
 o:value("tls://8.8.8.8", "8.8.8.8 (Google DNS)")
 o:value("tls://208.67.222.222", "208.67.222.222 (OpenDNS)")
 o:depends("configfile", "/etc/mosdns/config.yaml")
